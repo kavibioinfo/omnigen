@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniGen - Drug Repurposing Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 4rem 0 2rem;
+        }
+
+        .logo {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: -2px;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        /* CTA Buttons */
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .cta-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .cta-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Features */
+        .features {
+            margin: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(255,255,255,0.15);
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* Architecture Diagram */
+        .architecture {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .arch-diagram {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .arch-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .arch-box {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .arch-arrow {
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            opacity: 0.8;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .social-links a:hover {
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .tagline { font-size: 1.1rem; }
+            .cta-group { flex-direction: column; align-items: center; }
+            .cta-button { width: 100%; max-width: 300px; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">🧬</div>
+            <h1>OmniGen</h1>
+            <p class="tagline">Multi-Omics Drug Repurposing Platform</p>
+            <p class="subtitle">Built with Graph Neural Networks on Biomedical Knowledge Graphs</p>
+            
+            <div class="cta-group">
+                <a href="https://omnigen-kavibioinfo.streamlit.app" class="cta-button cta-primary" target="_blank">
+                    🚀 Launch Demo
+                </a>
+                <a href="https://github.com/kavibioinfo/omnigen" class="cta-button cta-secondary" target="_blank">
+                    📂 View on GitHub
+                </a>
+            </div>
+        </header>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">5.8M</div>
+                <div class="stat-label">Biomedical Triplets</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4.5M</div>
+                <div class="stat-label">Model Parameters</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">97K</div>
+                <div class="stat-label">Graph Entities</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Val AUC Score</div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+            <h2 class="section-title">Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Heterogeneous GNN</h3>
+                    <p>Graph Attention Networks processing multi-relational biomedical knowledge graphs with 5.8M triplets from DRKG.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💊</div>
+                    <h3>Drug Repurposing</h3>
+                    <p>Predict novel therapeutic uses for existing drugs by analyzing compound-disease-gene interaction networks.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Explainable AI</h3>
+                    <p>SHAP-ready architecture for interpreting predictions. Understand which molecular features drive each candidate.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Interactive Web App</h3>
+                    <p>Streamlit-powered interface with real-time predictions, network visualization, and downloadable reports.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Multi-Omics Integration</h3>
+                    <p>Combines genomics, proteomics, and metabolomics data through unified graph representations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Scalable Pipeline</h3>
+                    <p>End-to-end ML pipeline from raw data ingestion to deployed prediction API with Docker support.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Architecture -->
+        <div class="architecture">
+            <h2 class="section-title">System Architecture</h2>
+            <div class="arch-diagram">
+                <div class="arch-flow">
+                    <div class="arch-box">📥 DRKG Data</div>
+                    <span class="arch-arrow">→</span>
+                    <div class="arch-box">🏗️ Graph Builder</div>
+                    <span class="arch-arrow">→</span>
+                    <div class="arch-box">🧠 GNN Model</div>
+                    <span class="arch-arrow">→</span>
+                    <div class="arch-box">🎯 Predictions</div>
+                    <span class="arch-arrow">→</span>
+                    <div class="arch-box">🌐 Streamlit UI</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="tech-stack">
+            <h2 class="section-title">Tech Stack</h2>
+            <div class="tech-tags">
+                <span class="tech-tag">PyTorch</span>
+                <span class="tech-tag">PyTorch Geometric</span>
+                <span class="tech-tag">Graph Attention Networks</span>
+                <span class="tech-tag">Streamlit</span>
+                <span class="tech-tag">DRKG</span>
+                <span class="tech-tag">BioPython</span>
+                <span class="tech-tag">Plotly</span>
+                <span class="tech-tag">NetworkX</span>
+                <span class="tech-tag">PyVis</span>
+                <span class="tech-tag">Docker</span>
+                <span class="tech-tag">GitHub Actions</span>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="social-links">
+                <a href="https://github.com/kavibioinfo" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">LinkedIn</a>
+                <a href="https://ayushnexa.com" target="_blank">AyushNexa</a>
+            </div>
+            <p>Built by AyushNexa | 2026 | Bioinformatics & AI</p>
+        </footer>
+    </div>
+</body>
+</html>
